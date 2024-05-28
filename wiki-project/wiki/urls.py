@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+
+#handler404 = 'encyclopedia.views.custom_404'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("encyclopedia.urls"))
+    path('', include("encyclopedia.urls")),
 ]
