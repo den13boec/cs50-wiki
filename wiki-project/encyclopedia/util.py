@@ -36,6 +36,10 @@ def get_entry(title):
         return None
 
 def read_entry(title):
-    with open(f"entries/{title}.md", "r", encoding="utf-8") as input_file:
-        tempMd = input_file.read()
-    return markdown.markdown(tempMd)
+    try:
+        with open(f"entries/{title}.md", "r", encoding="utf-8") as input_file:
+            tempMd = input_file.read()
+        return markdown.markdown(tempMd)
+    except FileNotFoundError:
+        return None
+    
