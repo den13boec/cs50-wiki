@@ -1,0 +1,19 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search results
+{% endblock %}
+
+{% block body %}
+    <h1>Search results</h1>
+    <ul>
+        {% if entries|length == 0 %}
+            <p>We couldn't find the page you were looking for.</p>
+        {% else %}
+            {% for entry in entries %}            
+                <li><a href="{% url 'encyclopedia:entry' entry|slugify %}">{{ entry }}</a></li>
+            {% endfor %}
+        {% endif %}
+        
+    </ul>
+{% endblock %}
