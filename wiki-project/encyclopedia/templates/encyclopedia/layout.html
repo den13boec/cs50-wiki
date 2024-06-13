@@ -13,14 +13,16 @@
             <div class="sidebar col-lg-2 col-md-3">
                 <h2>Wiki</h2>
                 <form method="get" action="{% url 'encyclopedia:search_entry' %}" >
-                    <input class="search" type="text" name="search_article" placeholder="Search for article">
-                    <button type="submit" id = "search_button">Search</button>
+                    <input required class="search" type="text" name="search_article" placeholder="Search for entry"
+                    oninvalid="this.setCustomValidity('Enter entry name or part of it')"
+                    oninput="this.setCustomValidity('')">
+                    <button type="submit" class = "search_button">Search</button>
                 </form>
                 <div>
                     <a href="{% url 'encyclopedia:index' %}">Home</a>
                 </div>
                 <div>
-                    Create New Page
+                    <a href="{% url 'encyclopedia:new_page' %}">Create New Page</a>
                 </div>
                 <div>
                     Random Page

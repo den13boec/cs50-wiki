@@ -1,0 +1,47 @@
+{% extends "encyclopedia/layout.html" %}
+{% load static %}
+
+{% block title %}
+    New entry
+{% endblock %}
+
+{% block body %}    
+    <div class = "col-auto">
+        <h1>Creating new entry</h1>     
+        {% if messages %}
+            <div class = "error_message" id = "error_message_new_page">   
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            </div>
+            <script src="{% static 'encyclopedia/flavour.js' %}"></script>
+            <script>
+                error_hide()
+            </script>
+        {% endif %}   
+    </div>        
+    <form method = "post" action="">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class = "col-auto">
+                <label for="entry_title">Entry title</label>
+                <input required class="form-control" type="text" name = "entry_title" id="entry_title" placeholder=""
+                oninvalid="this.setCustomValidity('Enter entry title')"
+                oninput="this.setCustomValidity('')">
+            </div>
+        </div>        
+        <div class="form-group">
+            <div class = "col-auto">
+                <label for="new_page_content">Markdown content for entry</label>
+                <textarea required class="form-control" name = "new_page_content" id="new_page_content" rows="10"
+                oninvalid="this.setCustomValidity('Enter markdown text')"
+                oninput="this.setCustomValidity('')"></textarea>
+            </div>
+        </div>
+        <div class = "col-auto">
+            <button type="submit" class = "btn btn-primary">Save entry</button>
+        </div>
+    </form>
+{% endblock %}

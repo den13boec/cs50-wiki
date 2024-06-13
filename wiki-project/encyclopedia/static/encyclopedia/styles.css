@@ -37,7 +37,11 @@ textarea {
     margin-top: 5px;
 }
 
-#search_button{
+.search_button{
     font-size: 15px;
     line-height: 20px;
 }
+
+.error_message {
+    display:inline-block;      
+ }
