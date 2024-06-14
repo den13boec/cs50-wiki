@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from . import util
+from random import choice
 
 
 def index(request):    
@@ -32,3 +33,9 @@ def new_page(request):
                 util.save_entry(entry_title, new_page_content)
                 return redirect("encyclopedia:entry", entry_title)
     return render(request, "encyclopedia/new_page.html")    
+
+def random_page(_):
+    all_entries = util.list_entries()
+    rnd = choice(all_entries)
+    return redirect("encyclopedia:entry", rnd)
+    
