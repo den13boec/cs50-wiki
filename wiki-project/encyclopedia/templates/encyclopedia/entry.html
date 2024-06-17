@@ -5,5 +5,10 @@
 {% endblock %}
 
 {% block body %}
-    {{ entry_content|safe }}
+    <div class="col-sm-auto">
+        <a href = "{% url 'encyclopedia:edit_page' entry_title %}">Edit this entry page</a>
+    </div>
+    <div class="col-sm-auto">
+        {{ entry_content|safe }}
+    </div>
 {% endblock %}

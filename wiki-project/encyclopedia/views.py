@@ -38,4 +38,15 @@ def random_page(_):
     all_entries = util.list_entries()
     rnd = choice(all_entries)
     return redirect("encyclopedia:entry", rnd)
+
+def edit_entry(request, entry_title):
+    if request.method == "POST":
+        edited_entry_title = request.POST.get("edited_entry_title")
+        edited_page_content = request.POST.get("edited_page_content")
+        if edited_entry_title and edited_page_content:
+            util.save_edited_entry(edited_entry_title, edited_page_content, request.session["old_title"])
+            return redirect("encyclopedia:entry", edited_entry_title)
+    else:
+        request.session["old_title"] = entry_title
+    return render(request, "encyclopedia/edit_page.html", {"entry_title": entry_title, "entry_content": util.get_entry(entry_title)})
     

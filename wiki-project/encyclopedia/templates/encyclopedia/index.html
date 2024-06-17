@@ -8,7 +8,7 @@
     <h1>All Pages</h1>
     <ul>
         {% for entry in entries %}            
-            <li><a href="{% url 'encyclopedia:entry' entry|slugify %}">{{ entry }}</a></li>
+            <li><a href="{% url 'encyclopedia:entry' entry %}">{{ entry }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
