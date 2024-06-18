@@ -31,28 +31,18 @@ def save_edited_entry(title, content, old_title):
     old_filename = f"entries/{old_title}.md"
     if default_storage.exists(old_filename):
         default_storage.delete(old_filename)
-    default_storage.save(filename, ContentFile(content))
+    default_storage.save(filename, ContentFile(content.encode()))
 
-def get_entry(title):
+def get_entry(title, convert_to_text_page):
     """
     Retrieves an encyclopedia entry by its title. If no such
-    entry exists, the function returns None (raw markdown text for edit).
+    entry exists, the function returns None.
     """
     try:
-        f = default_storage.open(f"entries/{title}.md")
-        return f.read().decode("utf-8")
+        temp_f = default_storage.open(f"entries/{title}.md")
+        temp_f = temp_f.read().decode("utf-8")
+        if convert_to_text_page:
+            return markdown.markdown(temp_f)
+        return temp_f
     except FileNotFoundError:
         return None
-
-# clean text for page
-def read_entry(title):
-    """
-    Retrieves clean text for entry page to show.
-    """
-    try:
-        with open(f"entries/{title}.md", "r", encoding="utf-8") as input_file:
-            tempMd = input_file.read()
-        return markdown.markdown(tempMd)
-    except FileNotFoundError:
-        return None
-    

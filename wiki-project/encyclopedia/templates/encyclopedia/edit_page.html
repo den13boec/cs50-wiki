@@ -24,7 +24,7 @@
                 <label for="edited_page_content">Markdown content for entry</label>
                 <textarea required class="form-control" name = "edited_page_content" id="edited_page_content" rows="10"
                 oninvalid="this.setCustomValidity('Enter markdown text')"
-                oninput="this.setCustomValidity('')">{{entry_content|safe}}</textarea>
+                oninput="this.setCustomValidity('')">{{ entry_content|safe }}</textarea>
             </div>
         </div>
         <div class = "col-auto">

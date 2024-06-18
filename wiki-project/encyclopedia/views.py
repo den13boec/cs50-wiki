@@ -8,7 +8,7 @@ def index(request):
     return render(request, "encyclopedia/index.html", {"entries": util.list_entries()})
 
 def entry(request, entry_title):
-    return render(request, "encyclopedia/entry.html", {"entry_title": entry_title, "entry_content": util.read_entry(entry_title)})
+    return render(request, "encyclopedia/entry.html", {"entry_title": entry_title, "entry_content": util.get_entry(entry_title, True)})
 
 def search_entry(request):
     if request.method == "GET":
@@ -48,5 +48,5 @@ def edit_entry(request, entry_title):
             return redirect("encyclopedia:entry", edited_entry_title)
     else:
         request.session["old_title"] = entry_title
-    return render(request, "encyclopedia/edit_page.html", {"entry_title": entry_title, "entry_content": util.get_entry(entry_title)})
+    return render(request, "encyclopedia/edit_page.html", {"entry_title": entry_title, "entry_content": util.get_entry(entry_title, False)})
     
